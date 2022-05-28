@@ -13,10 +13,10 @@ function onPlay(data) {
     seconds: 3.034,
   };
 
-  setCurrentTime();
+  getCurrentTime();
 }
 
-function setCurrentTime() {
+function getCurrentTime() {
   player.getCurrentTime().then(function (seconds) {
     time = seconds;
     return time;
