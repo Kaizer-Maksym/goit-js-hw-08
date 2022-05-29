@@ -12,18 +12,15 @@ function onPlay(data) {
     percent: 0.049,
     seconds: 3.034,
   };
-
   getCurrentTime();
 }
 
 function getCurrentTime() {
-  player.getCurrentTime().then(function (seconds) {
-    time = seconds;
-    return time;
+  player.getCurrentTime().then(seconds => {
+    localStorage.setItem('videoplayer-current-time', JSON.stringify(seconds));
   });
-  localStorage.setItem('videoplayer-current-time', JSON.stringify(time));
 }
 
-player.setCurrentTime(
-  JSON.parse(localStorage.getItem('videoplayer-current-time'))
-);
+let time = Number(JSON.parse(localStorage.getItem('videoplayer-current-time')));
+
+player.setCurrentTime(time);
