@@ -20,10 +20,16 @@ function changeInputValue(e) {
 }
 
 function completionForm() {
-  const formValue = JSON.parse(localStorage.getItem(STORAGE_KEY)) || '';
-  if (formValue) {
-    refs.input.value = formValue.email;
-    refs.textarea.value = formValue.message;
+  const storageValue = localStorage.getItem(STORAGE_KEY);
+
+  try {
+    const formValue = JSON.parse(storageValue) || '';
+    if (formValue) {
+      refs.input.value = formValue.email;
+      refs.textarea.value = formValue.message;
+    }
+  } catch (error) {
+    console.log('parsing error');
   }
 }
 completionForm();

@@ -20,7 +20,11 @@ function getCurrentTime() {
     localStorage.setItem('videoplayer-current-time', JSON.stringify(seconds));
   });
 }
+const currentTime = localStorage.getItem('videoplayer-current-time');
 
-let time = Number(JSON.parse(localStorage.getItem('videoplayer-current-time')));
-
-player.setCurrentTime(time);
+try {
+  let time = Number(JSON.parse(currentTime));
+  player.setCurrentTime(time);
+} catch (error) {
+  console.log('parsing error');
+}
